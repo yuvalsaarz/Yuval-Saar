@@ -2,7 +2,7 @@ export const site = {
   name: "Yuval Saar",
   tagline: "Visual Communication · Shenkar College",
   shortBio:
-    "A Visual Communication student at Shenkar College with a love for turning chaos into clarity. I'm drawn to design that's both beautiful and useful, and I enjoy solving messy problems with clean, thoughtful solutions.",
+    "A 4th-year Visual Communication student at Shenkar, working across packaging, editorial, and digital — drawn to design that's quiet on the surface and deliberate underneath, where the smallest decisions carry the most weight.",
   email: "yuvalsaarz@gmail.com",
   location: "Israel",
   social: {
