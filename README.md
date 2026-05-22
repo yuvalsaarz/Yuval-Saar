@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# yuv_project — Designer portfolio
 
-## Getting Started
+Portfolio website for a 4th-year visual communication student. Built with Next.js + TypeScript + Tailwind, designed to run locally now and deploy to Vercel via GitHub later.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + React 19 + TypeScript
+- **Tailwind CSS 4**
+- **next/image** for image optimization
+- **next/font** with Geist Sans / Geist Mono
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install      # only needed once
+npm run dev      # starts http://localhost:3000
+npm run build    # production build
+npm run start    # serve the production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/
+    layout.tsx          # Site shell: <Nav>, <Footer>, metadata
+    page.tsx            # Homepage — hero + project grid
+    about/page.tsx      # About page
+    work/[slug]/page.tsx  # Project detail page (statically generated)
+    globals.css         # Tailwind import + theme variables
+  components/
+    Nav.tsx
+    Footer.tsx
+    ProjectCard.tsx
+  content/
+    projects.ts         # Project data (edit this to add work)
+  lib/
+    site.ts             # Designer name, tagline, contact, socials
+public/
+  projects/<slug>/      # Project images live here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding a project
 
-## Learn More
+1. Drop images into `public/projects/<your-slug>/`.
+2. Add an entry to `projects` in `src/content/projects.ts`:
 
-To learn more about Next.js, take a look at the following resources:
+```ts
+{
+  slug: "my-project",
+  title: "My Project",
+  year: 2026,
+  tags: ["Branding", "Print"],
+  summary: "One or two sentences about the project.",
+  cover: "/projects/my-project/cover.jpg",
+  images: ["/projects/my-project/01.jpg", "/projects/my-project/02.jpg"],
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The homepage grid and `/work/my-project` page render automatically.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Editing personal info
 
-## Deploy on Vercel
+Update `src/lib/site.ts` — name, tagline, bio, email, social links.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment (later)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+When ready:
+
+1. Create a GitHub repo and push this folder to it.
+2. Import the repo at [vercel.com/new](https://vercel.com/new). No config needed — Vercel auto-detects Next.js.
+3. Every push to `main` deploys to production; PRs get preview URLs.

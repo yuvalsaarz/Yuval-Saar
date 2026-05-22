@@ -22,7 +22,14 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+
+# editors
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # debug
 npm-debug.log*
@@ -39,3 +46,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local tooling (Claude Code skills & settings — not part of the website)
+.claude/
+.agents/
+skills-lock.json
